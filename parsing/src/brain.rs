@@ -1,5 +1,6 @@
 use std::io;
 use std::io::Write;
+use crate::handler;
 
 pub fn run_loop() -> io::Result<()> {
     let stdout = io::stdout();
@@ -14,7 +15,7 @@ pub fn run_loop() -> io::Result<()> {
 
         match input.trim() {
             "exit" => active = false,
-            a => println!("{}", a)
+            a => handler::handle_request(a.to_string())
         }
         input.clear();
     }
